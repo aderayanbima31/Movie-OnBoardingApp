@@ -1,0 +1,113 @@
+allprojects {
+    repositories {
+        jcenter()
+        google()
+    }
+}
+
+ext {
+    //Android
+    androidBuildToolsVersion = "28.0.3"
+    androidMinSdkVersion = 19
+    androidTargetSdkVersion = 28
+    androidCompileSdkVersion = 28
+
+    //Libraries
+    appCompatVersion = '1.1.0-alpha03'
+    constraintLayoutVersion = '1.1.3'
+    coordinatorLayoutVersion = '1.0.0'
+    materialVersion = '1.1.0-alpha04'
+    daggerVersion = '2.8'
+    butterKnifeVersion = '10.1.0'
+    recyclerViewVersion = '1.1.0-alpha03'
+    cardViewVersion = '1.0.0'
+    rxJavaVersion = '2.2.8'
+    rxJavaAdapterVersion = '2.5.0'
+    rxAndroidVersion = '2.1.1'
+    javaxAnnotationVersion = '1.0'
+    javaxInjectVersion = '1'
+    gsonVersion = '2.3'
+    okHttpVersion = '2.5.0'
+    androidAnnotationsVersion = '21.0.3'
+    retrofitVersion = '2.5.0'
+    arrowVersion = '1.0.0'
+    glideVersion = '4.9.0'
+    gsonConverterVersion = '2.2.0'
+    scalarConverterVersion = '2.5.0'
+    retrofitRxJava2AdapterVersion = '1.0.0'
+    roomVersion = '1.0.0'
+    junitVersion = '4.12'
+    espressoVersion = '3.0.1'
+    testRunnerVersion = '1.0.1'
+    mockitoVersion = '2.7.22'
+    powerMockVersion = '1.7.0RC4'
+
+    //Development
+    leakCanaryVersion = '1.3.1'
+
+    appDependencies = [
+            appCompat            : "androidx.appcompat:appcompat:${appCompatVersion}",
+            material             : "com.google.android.material:material:${materialVersion}",
+            constrainLayout      : "androidx.constraintlayout:constraintlayout:${constraintLayoutVersion}",
+            coordinatorLayout    : "androidx.coordinatorlayout:coordinatorlayout:${coordinatorLayoutVersion}",
+            daggerCompiler       : "com.google.dagger:dagger-compiler:${daggerVersion}",
+            dagger               : "com.google.dagger:dagger:${daggerVersion}",
+            butterKnife          : "com.jakewharton:butterknife:${butterKnifeVersion}",
+            butterKnifeAnnotation: "com.jakewharton:butterknife-compiler:${butterKnifeVersion}",
+            recyclerView         : "androidx.recyclerview:recyclerview:${recyclerViewVersion}",
+            cardView             : "androidx.cardview:cardview:${cardViewVersion}",
+            rxJava               : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+            rxAndroid            : "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
+            javaxAnnotation      : "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
+            glide                : "com.github.bumptech.glide:glide:${glideVersion}",
+            arrow                : "com.fernandocejas:arrow:${arrowVersion}",
+            junit                : "junit:junit:${junitVersion}",
+            espresso             : "com.android.support.test.espresso:espresso-core:${espressoVersion}",
+            testRunner           : "com.android.support.test:runner:${testRunnerVersion}",
+            mockito              : "org.mockito:mockito-core:${mockitoVersion}",
+            mockitoAndroid       : "org.mockito:mockito-core:${mockitoVersion}",
+            powerMock            : "org.powermock:powermock-core:${powerMockVersion}",
+            powerMockModule      : "org.powermock:powermock-module-junit4:${powerMockVersion}",
+            powerMockApi         : "org.powermock:powermock-api-mockito2:${powerMockVersion}"
+    ]
+
+    domainDependencies = [
+            javaxAnnotation: "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
+            javaxInject    : "javax.inject:javax.inject:${javaxInjectVersion}",
+            rxJava         : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+            arrow          : "com.fernandocejas:arrow:${arrowVersion}",
+            junit          : "junit:junit:${junitVersion}",
+            mockito        : "org.mockito:mockito-core:${mockitoVersion}",
+            powerMock      : "org.powermock:powermock-core:${powerMockVersion}",
+            powerMockModule: "org.powermock:powermock-module-junit4:${powerMockVersion}",
+            powerMockApi   : "org.powermock:powermock-api-mockito2:${powerMockVersion}"
+    ]
+
+    dataDependencies = [
+            daggerCompiler        : "com.google.dagger:dagger-compiler:${daggerVersion}",
+            dagger                : "com.google.dagger:dagger:${daggerVersion}",
+            retrofit              : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
+            okHttp                : "com.squareup.okhttp:okhttp:${okHttpVersion}",
+            gson                  : "com.google.code.gson:gson:${gsonVersion}",
+            rxJava                : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+            rxJavaAdapter         : "com.squareup.retrofit2:adapter-rxjava:${rxJavaAdapterVersion}",
+            rxAndroid             : "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
+            retrofitRxJava2Adapter: "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:${retrofitRxJava2AdapterVersion}",
+            javaxAnnotation       : "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
+            javaxInject           : "javax.inject:javax.inject:${javaxInjectVersion}",
+            androidAnnotations    : "com.android.support:support-annotations:${androidAnnotationsVersion}",
+            gsonConverter         : "com.squareup.retrofit2:converter-gson:${gsonConverterVersion}",
+            scalarsConverter      : "com.squareup.retrofit2:converter-scalars:${scalarConverterVersion}",
+            room                  : "android.arch.persistence.room:runtime:${roomVersion}",
+            roomCompiler          : "android.arch.persistence.room:compiler:${roomVersion}",
+            junit                 : "junit:junit:${junitVersion}",
+            mockito               : "org.mockito:mockito-core:${mockitoVersion}",
+            powerMock             : "org.powermock:powermock-core:${powerMockVersion}",
+            powerMockModule       : "org.powermock:powermock-module-junit4:${powerMockVersion}",
+            powerMockApi          : "org.powermock:powermock-api-mockito2:${powerMockVersion}"
+    ]
+
+    developmentDependencies = [
+            leakCanary: "com.squareup.leakcanary:leakcanary-android:${leakCanaryVersion}"
+    ]
+}

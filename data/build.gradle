@@ -1,0 +1,55 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
+
+apply plugin: 'com.android.library'
+
+android {
+    def globalConfiguration = rootProject.extensions.getByName("ext")
+
+    compileSdkVersion globalConfiguration.getAt("androidCompileSdkVersion")
+    buildToolsVersion globalConfiguration.getAt("androidBuildToolsVersion")
+
+    defaultConfig {
+        minSdkVersion globalConfiguration.getAt("androidMinSdkVersion")
+        targetSdkVersion globalConfiguration.getAt("androidTargetSdkVersion")
+        versionCode globalConfiguration.getAt("androidVersionCode")
+
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    def dataDependencies = rootProject.ext.dataDependencies
+
+    implementation project(':domain')
+
+    implementation dataDependencies.dagger
+    implementation dataDependencies.retrofit
+    implementation dataDependencies.gson
+    implementation dataDependencies.rxJava
+    implementation dataDependencies.rxAndroid
+    implementation dataDependencies.okHttp
+    implementation dataDependencies.javaxInject
+    implementation dataDependencies.gsonConverter
+    implementation dataDependencies.scalarsConverter
+    implementation dataDependencies.rxJavaAdapter
+    implementation dataDependencies.retrofitRxJava2Adapter
+    implementation dataDependencies.room
+    annotationProcessor dataDependencies.roomCompiler
+    annotationProcessor dataDependencies.androidAnnotations
+    annotationProcessor dataDependencies.javaxAnnotation
+    annotationProcessor dataDependencies.daggerCompiler
+
+    testImplementation dataDependencies.junit
+    testImplementation dataDependencies.mockito
+    testImplementation appDependencies.powerMock
+    testImplementation appDependencies.powerMockModule
+    testImplementation appDependencies.powerMockApi
+}
