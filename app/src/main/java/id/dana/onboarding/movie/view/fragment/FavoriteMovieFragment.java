@@ -1,4 +1,4 @@
-package id.dana.onboarding.movie.internal.view.fragment;
+package id.dana.onboarding.movie.view.fragment;
 
 import android.os.Bundle;
 

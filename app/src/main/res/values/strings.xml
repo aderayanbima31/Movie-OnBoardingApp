@@ -1,4 +1,20 @@
 <resources>
     <string name="app_name">Movie</string>
     <string name="title_data">Data</string>
+
+
+    <!--Toolbar title Name-->
+    <string name="popular">Popular Movies</string>
+    <string name="top_rated">Top Rated</string>
+    <string name="movie_detail">Movie Detail</string>
+    <string name="favorite_movies">Favorite Movies</string>
+
+    <string name="image_movie_description">Movie Poster</string>
+
+    <!--Exception messages-->
+    <string name="exception_message_no_connection">There is no internet connection</string>
+    <string name="exception_message_generic">There was an application error</string>
+    <string name="exception_message_movie_not_found">Cannot retrieve user data. Check your internet
+        connection
+    </string>
 </resources>

@@ -13,9 +13,11 @@ import androidx.annotation.UiThread;
 import dagger.Module;
 import dagger.Provides;
 import id.dana.data.executor.JobExecutor;
+import id.dana.data.favoritemovie.repository.FavoriteMovieEntityRepository;
 import id.dana.data.repository.MovieEntityRepository;
 import id.dana.onboarding.domain.executor.PostExecutionThread;
 import id.dana.onboarding.domain.executor.ThreadExecutor;
+import id.dana.onboarding.domain.repository.FavoriteMovieRepository;
 import id.dana.onboarding.domain.repository.MovieRepository;
 import id.dana.onboarding.movie.MainApp;
 import id.dana.onboarding.movie.UIThread;
@@ -58,5 +60,11 @@ public class ApplicationModule {
         return movieEntityRepository;
     }
 
+    @Provides
+    @Singleton
+    FavoriteMovieRepository provideFavoriteMovieRepository(
+        FavoriteMovieEntityRepository favoriteMovieEntityRepository){
+        return  favoriteMovieEntityRepository;
+    }
 
 }

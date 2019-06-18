@@ -1,4 +1,4 @@
-package id.dana.onboarding.movie.internal.view.fragment;
+package id.dana.onboarding.movie.view.fragment;
 
 import android.widget.Toast;
 
@@ -22,5 +22,4 @@ public abstract class BaseFragment extends Fragment {
     protected <C> C getComponent(Class<C> componentType) {
         return componentType.cast(((HasComponent<C>) getContext()).getComponent());
     }
-
 }

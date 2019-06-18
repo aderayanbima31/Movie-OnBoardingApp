@@ -4,9 +4,10 @@ import dagger.Component;
 import id.dana.onboarding.movie.internal.PerActivity;
 import id.dana.onboarding.movie.internal.module.ActivityModule;
 import id.dana.onboarding.movie.internal.module.MovieModule;
-import id.dana.onboarding.movie.internal.view.fragment.DetailsMovieFragment;
-import id.dana.onboarding.movie.internal.view.fragment.PopularMovieFragment;
-import id.dana.onboarding.movie.internal.view.fragment.TopRatedMovieFragment;
+import id.dana.onboarding.movie.view.fragment.DetailsMovieFragment;
+import id.dana.onboarding.movie.view.fragment.FavoriteMovieFragment;
+import id.dana.onboarding.movie.view.fragment.PopularMovieFragment;
+import id.dana.onboarding.movie.view.fragment.TopRatedMovieFragment;
 
 /**
  * @author Derayan Bima A (derayan.bima@dana.id)
@@ -22,15 +23,14 @@ import id.dana.onboarding.movie.internal.view.fragment.TopRatedMovieFragment;
     }
 )
 
-public interface MovieComponent {
+public interface MovieComponent extends ActivityComponent {
 
     void inject(PopularMovieFragment popularMovieFragment);
 
     void inject(TopRatedMovieFragment topRatedMovieFragment);
 
     void inject(DetailsMovieFragment detailsMovieFragment);
-/*
-TODO
-    void inject(FavoriteMovieFragment favoriteMovieFragment);*/
+
+    void inject(FavoriteMovieFragment favoriteMovieFragment);
 
 }

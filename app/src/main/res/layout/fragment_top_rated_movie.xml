@@ -4,22 +4,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.fragment.FavoriteMovieFragment"
-    android:background="@color/design_default_color_on_secondary"
+android:background="@color/design_default_color_on_secondary"
 tools:background="@color/white">
 
     <ProgressBar
-        android:id="@+id/pb_loading_process_popular_movie"
+        android:id="@+id/pb_loading_process_top_rated_movie"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_gravity="center"
         android:layout_centerInParent="true"
+        android:layout_gravity="center"
         android:indeterminate="true"
         android:visibility="gone"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_popular_movie"
+        android:id="@+id/rv_top_rated_movie"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:clipToPadding="false"
         android:padding="8dp"
