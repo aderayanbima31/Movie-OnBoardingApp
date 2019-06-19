@@ -5,5 +5,10 @@
     <color name="colorAccent">#D81B60</color>
     <color name="colorText">#FFFFFF</color>
     <color name="white">#FFFFFF</color>
+    <color name="darkmode">#121212</color>
+    <color name="darkmode_bottomnav">#E1121212</color>
+
+    <color name="gray">#68F7F4F4</color>
+
 
 </resources>

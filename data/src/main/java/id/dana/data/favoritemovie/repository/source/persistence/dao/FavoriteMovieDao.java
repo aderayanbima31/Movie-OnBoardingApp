@@ -10,10 +10,7 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
-/**
- * @author Abraham Ginting (abraham.ginting@dana.id)
- * @version FavoriteMovieDao.java, v 0.1 12/04/19 15.02 by Abraham Ginting
- */
+
 @Dao
 public interface FavoriteMovieDao {
 

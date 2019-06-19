@@ -22,7 +22,6 @@ tools:background="@color/white">
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:clipToPadding="false"
-        android:padding="8dp"
         android:scrollbars="vertical"/>
 
 </RelativeLayout>

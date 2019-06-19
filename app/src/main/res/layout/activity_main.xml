@@ -31,9 +31,12 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:background="@color/design_default_color_on_secondary"
+        android:background="@color/darkmode_bottomnav"
         android:elevation="4dp"
+        app:itemIconTint="@drawable/bottom_nav_state_colors"
+        app:itemTextColor="@drawable/bottom_nav_state_colors"
         android:foreground="?attr/selectableItemBackground"
-        app:menu="@menu/bottom_navigation_menu"/>
+        app:menu="@menu/bottom_navigation_menu"
+    style="@style/Widget.Design.BottomNavigationView"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
