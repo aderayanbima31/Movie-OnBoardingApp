@@ -1,5 +1,7 @@
 package id.dana.onboarding.movie.presenter;
 
+import android.widget.Toast;
+
 import java.util.Collection;
 import java.util.List;
 
@@ -71,10 +73,11 @@ public class FavoriteMovieListPresenter implements Presenter {
         this.getFavoriteMovieListUseCase.execute(new DefaultObserver<List<FavoriteMovie>>() {
             @Override
             public void onNext(List<FavoriteMovie> favoriteMovies) {
-                Collection<FavoriteMovieModel> favoriteMovieModels = favoriteMovieModelDataMapper
-                    .transform(favoriteMovies);
-                favoriteMovieListView.renderFavoriteMovieList(favoriteMovieModels);
-                hideViewLoading();
+
+                    Collection<FavoriteMovieModel> favoriteMovieModels = favoriteMovieModelDataMapper
+                        .transform(favoriteMovies);
+                    favoriteMovieListView.renderFavoriteMovieList(favoriteMovieModels);
+                    hideViewLoading();
             }
 
             @Override

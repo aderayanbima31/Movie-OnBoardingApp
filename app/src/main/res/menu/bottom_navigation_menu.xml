@@ -3,7 +3,7 @@
     <item
         android:id="@+id/navigation_popular_movies"
         android:title="@string/popular"
-        android:icon="@drawable/ic_popular_movies_white_24dp"/>
+        android:icon="@drawable/ic_local_movies_black_24dp"/>
 
     <item
         android:id="@+id/navigation_top_rated_movies"
