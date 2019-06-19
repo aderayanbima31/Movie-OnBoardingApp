@@ -8,10 +8,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-/**
- * @author Abraham Ginting (abraham.ginting@dana.id)
- * @version FavoriteMovieEntityMapper.java, v 0.1 12/04/19 15.09 by Abraham Ginting
- */
 public class FavoriteMovieEntityMapper {
 
     @Inject

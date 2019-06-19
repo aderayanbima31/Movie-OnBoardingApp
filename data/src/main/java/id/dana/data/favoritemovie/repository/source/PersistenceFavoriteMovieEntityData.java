@@ -12,10 +12,7 @@ import javax.inject.Singleton;
 
 import io.reactivex.Observable;
 
-/**
- * @author Abraham Ginting (abraham.ginting@dana.id)
- * @version PersistenceFavoriteMovieEntityData.java, v 0.1 12/04/19 15.02 by Abraham Ginting
- */
+
 @Singleton
 public class PersistenceFavoriteMovieEntityData extends BasePersistence implements FavoriteMovieEntityData {
 

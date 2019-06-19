@@ -2,10 +2,7 @@ package id.dana.data.videotrailer.repository.source.network.model;
 
 import com.google.gson.annotations.SerializedName;
 
-/**
- * @author Abraham Ginting (abraham.ginting@dana.id)
- * @version VideoEntity, v 0.1 24/04/19 14.43 by Abraham Ginting
- */
+
 public class VideoEntity {
 
     @SerializedName("id")

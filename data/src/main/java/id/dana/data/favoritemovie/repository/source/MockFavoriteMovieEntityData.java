@@ -7,10 +7,7 @@ import java.util.List;
 
 import io.reactivex.Observable;
 
-/**
- * @author Abraham Ginting (abraham.ginting@dana.id)
- * @version MockFavoriteMovieEntityData.java, v 0.1 12/04/19 14.58 by Abraham Ginting
- */
+
 public class MockFavoriteMovieEntityData implements FavoriteMovieEntityData {
 
     @Override

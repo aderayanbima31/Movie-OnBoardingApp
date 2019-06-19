@@ -10,10 +10,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-/**
- * @author Abraham Ginting (abraham.ginting@dana.id)
- * @version VideoTrailerMapper, v 0.1 25/04/19 14.22 by Abraham Ginting
- */
+
 @Singleton
 public class VideoTrailerMapper {
 

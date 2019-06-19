@@ -6,10 +6,7 @@ import id.dana.data.videotrailer.repository.source.network.model.VideoEntity;
 
 import java.util.List;
 
-/**
- * @author Abraham Ginting (abraham.ginting@dana.id)
- * @version VideoTrailerResult, v 0.1 24/04/19 14.31 by Abraham Ginting
- */
+
 public class VideoTrailerResult {
 
     @SerializedName("id")

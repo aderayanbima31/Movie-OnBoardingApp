@@ -8,10 +8,7 @@ import javax.inject.Singleton;
 
 import io.reactivex.Observable;
 
-/**
- * @author Abraham Ginting (abraham.ginting@dana.id)
- * @version MockVideoTrailerEntityData, v 0.1 25/04/19 14.08 by Abraham Ginting
- */
+
 @Singleton
 public class MockVideoTrailerEntityData implements VideoTrailerEntityData {
 

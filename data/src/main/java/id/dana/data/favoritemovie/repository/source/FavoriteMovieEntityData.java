@@ -6,10 +6,7 @@ import java.util.List;
 
 import io.reactivex.Observable;
 
-/**
- * @author Abraham Ginting (abraham.ginting@dana.id)
- * @version FavoriteMovieEntityData.java, v 0.1 12/04/19 14.59 by Abraham Ginting
- */
+
 public interface FavoriteMovieEntityData {
 
     Observable<List<FavoriteMovieEntity>> getAllMovieFavorite();

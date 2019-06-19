@@ -22,9 +22,9 @@ public interface RestApi {
 
     String API_URL_GET_TOP_RATED_MOVIE_LIST = API_BASE_URL + "movie/top_rated";
 
-    Observable<List<MovieEntity>> getPopularMovie();
-
-    Observable<List<MovieEntity>> getTopRatedMovie();
+//    Observable<List<MovieEntity>> getPopularMovie();
+//
+//    Observable<List<MovieEntity>> getTopRatedMovie();
 
     Observable<MovieEntity> movieEntityById(final String movieId);
 

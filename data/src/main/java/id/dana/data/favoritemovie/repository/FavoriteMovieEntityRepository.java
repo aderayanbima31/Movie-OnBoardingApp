@@ -15,10 +15,7 @@ import id.dana.onboarding.domain.FavoriteMovie;
 import id.dana.onboarding.domain.repository.FavoriteMovieRepository;
 import io.reactivex.Observable;
 
-/**
- * @author Abraham Ginting (abraham.ginting@dana.id)
- * @version FavoriteMovieEntityRepository.java, v 0.1 12/04/19 14.56 by Abraham Ginting
- */
+
 @Singleton
 public class FavoriteMovieEntityRepository implements FavoriteMovieRepository {
 

@@ -43,51 +43,6 @@ public class RestAPIImpl implements RestApi {
     }
 
     @Override
-    public Observable<List<MovieEntity>> getPopularMovie() {
-        return Observable.create(emitter -> {
-            if (isThereInternetConnection()) {
-                try {
-                    String responseMovieEntities = getMoviePopularEntitiesFromApi();
-                    if (responseMovieEntities != null) {
-                        emitter.onNext(movieEntityJsonMapper
-                            .transformMovieEntityCollection(responseMovieEntities));
-                        emitter.onComplete();
-                    } else {
-                        emitter.onError(new NetworkConnectionException());
-                    }
-                } catch (Exception e) {
-                    emitter.onError(new NetworkConnectionException(e.getCause()));
-                }
-            } else {
-                emitter.onError(new NetworkConnectionException());
-            }
-        });
-    }
-
-    @Override
-    public Observable<List<MovieEntity>> getTopRatedMovie() {
-        return Observable.create(emitter -> {
-            if (isThereInternetConnection()) {
-                try {
-                    String responseMovieEntities = getMovieTopRatedEntitiesFromApi();
-                    Log.e(TAG, "getTopRatedMovie: " + getMovieTopRatedEntitiesFromApi());
-                    if (responseMovieEntities != null) {
-                        emitter.onNext(movieEntityJsonMapper
-                            .transformMovieEntityCollection(responseMovieEntities));
-                        emitter.onComplete();
-                    } else {
-                        emitter.onError(new NetworkConnectionException());
-                    }
-                } catch (Exception e) {
-                    emitter.onError(new NetworkConnectionException());
-                }
-            } else {
-                emitter.onError(new NetworkConnectionException());
-            }
-        });
-    }
-
-    @Override
     public Observable<MovieEntity> movieEntityById(String movieId) {
         return Observable.create(emitter -> {
             if (RestAPIImpl.this.isThereInternetConnection()) {
