@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import java.util.Collection;
 
@@ -128,10 +127,11 @@ public class PopularMovieFragment extends BaseFragment implements MovieListView 
     public void onDetach() {
         super.onDetach();
         this.movieListListener = null;
+        popularMovieAdapter.clearList();
     }
 
     private void loadMovieList() {
-        popularMovieListPresenter.initialize();
+        popularMovieListPresenter.initialize(popularMovieAdapter.getPageCount());
     }
 
     private void setUpRecyclerView() {
@@ -151,7 +151,7 @@ public class PopularMovieFragment extends BaseFragment implements MovieListView 
                 if (dy > 0){
                     if (!rvPopularMovie.canScrollVertically(RecyclerView.FOCUS_DOWN)){
                         if (itShouldLoadMore){
-                            loadMore();
+                            loadMore(popularMovieAdapter.getPageCount());
                         }
                     }
                 }
@@ -159,9 +159,9 @@ public class PopularMovieFragment extends BaseFragment implements MovieListView 
         });
     }
 
-    private void loadMore() {
+    private void loadMore(int pageCount) {
         showToastMessage("Load More");
-        popularMovieListPresenter.initialize();
+        popularMovieListPresenter.initialize(pageCount);
     }
 
     private int convertDpToPx() {
@@ -221,4 +221,6 @@ public class PopularMovieFragment extends BaseFragment implements MovieListView 
 
         void onMovieClicked(final MovieModel movieModel);
     }
+
+
 }

@@ -62,22 +62,22 @@ public class PopularMovieListPresenter implements Presenter {
     /**
      * Initializes the presenter by start retrieving the movie list/
      */
-    public void initialize() {
-        this.loadMovieList();
+    public void initialize(int page) {
+        this.loadMovieList(page);
     }
 
     /**
      * Loads all movies.
      */
-    private void loadMovieList() {
-        this.getPopularMovieList();
+    private void loadMovieList(int page) {
+        this.getPopularMovieList(page);
     }
 
     private void showViewLoading() {
         this.movieListView.showLoading();
     }
 
-    private void getPopularMovieList() {
+    private void getPopularMovieList(int page) {
         this.showViewLoading();
         this.getPopularMovieListUseCase.execute(new DefaultObserver<List<Movie>>() {
             @Override
@@ -96,7 +96,7 @@ public class PopularMovieListPresenter implements Presenter {
             public void onComplete() {
                 hideViewLoading();
             }
-        }, null);
+        }, GetPopularMovieList.Params.forMovie(page));
     }
 
     private void hideViewLoading() {

@@ -44,15 +44,15 @@ public class MovieEntityRepository implements MovieRepository {
     }
 
     @Override
-    public Observable<List<Movie>> popularMovies() {
+    public Observable<List<Movie>> popularMovies(int page) {
         final MovieEntityData movieEntityData = this.movieEntityDataFactory.createCloudDataStore();
-        return movieEntityData.popularMovieEntityList().map(this.movieEntityDataMapper::transform);
+        return movieEntityData.popularMovieEntityList(page).map(this.movieEntityDataMapper::transform);
     }
 
     @Override
-    public Observable<List<Movie>> topRatedMovies() {
+    public Observable<List<Movie>> topRatedMovies(int page) {
         final MovieEntityData movieEntityData = this.movieEntityDataFactory.createCloudDataStore();
-        return movieEntityData.topRatedMovieEntityList().map(this.movieEntityDataMapper::transform);
+        return movieEntityData.topRatedMovieEntityList(page).map(this.movieEntityDataMapper::transform);
     }
 
     @Override
@@ -62,22 +62,24 @@ public class MovieEntityRepository implements MovieRepository {
             .map(this.movieEntityDataMapper::transform);
     }
 
+
     /**
      * Construct data from {@link retrofit2.Retrofit} source implementation
      */
+
     @Override
-    public Observable<List<Movie>> retrofitPopularMovies() {
+    public Observable<List<Movie>> retrofitPopularMovies(int page) {
         MovieEntityData movieEntityData = this.movieEntityDataFactory
             .createCloudDataStoreRetrofit();
-        return movieEntityData.getPopularMovieEntityList()
+        return movieEntityData.getPopularMovieEntityList(page)
             .map(movieEntityDataMapper::transformMovieEntity);
     }
 
     @Override
-    public Observable<List<Movie>> retrofitTopRateMovies() {
+    public Observable<List<Movie>> retrofitTopRateMovies(int page) {
         MovieEntityData movieEntityData = this.movieEntityDataFactory
             .createCloudDataStoreRetrofit();
-        return movieEntityData.getTopRatedMovieEntityList()
+        return movieEntityData.getTopRatedMovieEntityList(page)
             .map(movieEntityDataMapper::transformMovieEntity);
     }
 

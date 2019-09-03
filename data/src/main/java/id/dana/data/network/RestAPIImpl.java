@@ -65,17 +65,17 @@ public class RestAPIImpl implements RestApi {
     }
 
     @Override
-    public Observable<MovieResponse> getPopularMovieRetrofit() {
+    public Observable<MovieResponse> getPopularMovieRetrofit(int page) {
         RestApi restApi = ApiClient.getClient().create(RestApi.class);
-        return restApi.getPopularMovieRetrofit()
+        return restApi.getPopularMovieRetrofit(page)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread());
     }
 
     @Override
-    public Observable<MovieResponse> getTopRatedMovieRetrofit() {
+    public Observable<MovieResponse> getTopRatedMovieRetrofit(int page) {
         RestApi restApi = ApiClient.getClient().create(RestApi.class);
-        return restApi.getTopRatedMovieRetrofit()
+        return restApi.getTopRatedMovieRetrofit(page)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread());
     }

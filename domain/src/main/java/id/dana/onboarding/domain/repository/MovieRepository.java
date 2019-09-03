@@ -15,9 +15,9 @@ public interface MovieRepository {
     /**
      * Get an {@link Observable} which will emit a List of {@link com.android.domain.Movie}
      */
-    Observable<List<Movie>> popularMovies();
+    Observable<List<Movie>> popularMovies(int page);
 
-    Observable<List<Movie>> topRatedMovies();
+    Observable<List<Movie>> topRatedMovies(int page);
 
     /**
      * Get an {@link Observable} which will emit a {@link Movie}.
@@ -30,9 +30,9 @@ public interface MovieRepository {
      * Get an {@link Observable} which will emit a List of {@link com.android.domain.Movie} using
      * Retrofit
      */
-    Observable<List<Movie>> retrofitPopularMovies();
+    Observable<List<Movie>> retrofitPopularMovies(int page);
 
-    Observable<List<Movie>> retrofitTopRateMovies();
+    Observable<List<Movie>> retrofitTopRateMovies(int page);
 
     Observable<Movie> retrofitDetailMovie(String movieId);
 

@@ -49,6 +49,8 @@ public class TopRatedMovieFragment extends BaseFragment implements MovieListView
 
     private MovieListListener movieListListener;
 
+    private boolean itShouldLoadMore = true;
+
     private TopRatedMovieAdapter.OnItemClickListener onItemClickListener =
         new TopRatedMovieAdapter.OnItemClickListener() {
             @Override
@@ -135,7 +137,7 @@ public class TopRatedMovieFragment extends BaseFragment implements MovieListView
     }
 
     private void loadMovieList() {
-        topRatedListPresenter.initialize();
+        topRatedListPresenter.initialize(topRatedMovieAdapter.getPageCount());
     }
 
     private void setUpRecyclerView() {
@@ -144,6 +146,28 @@ public class TopRatedMovieFragment extends BaseFragment implements MovieListView
         rvTopRatedMovie.addItemDecoration(new GridSpacingItemDecoration(2, convertDpToPx(), true));
         rvTopRatedMovie.setItemAnimator(new DefaultItemAnimator());
         rvTopRatedMovie.setAdapter(topRatedMovieAdapter);
+        rvTopRatedMovie.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                if (dy > 0){
+                    if (!rvTopRatedMovie.canScrollVertically(RecyclerView.FOCUS_DOWN)){
+                        if (itShouldLoadMore){
+                            loadMore(topRatedMovieAdapter.getPageCount());
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    private void loadMore(int pageCount) {
+        showToastMessage("Load More");
+        topRatedListPresenter.initialize(pageCount);
     }
 
     private int convertDpToPx() {

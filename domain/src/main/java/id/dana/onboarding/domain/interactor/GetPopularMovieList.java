@@ -1,6 +1,8 @@
 package id.dana.onboarding.domain.interactor;
 
 
+import com.fernandocejas.arrow.checks.Preconditions;
+
 import java.util.List;
 
 import javax.inject.Inject;
@@ -15,7 +17,7 @@ import io.reactivex.Observable;
  * This class is an implementation of {@link UseCase} that represents a use case for
  * retrieving a collection of all {@link Movie}
  */
-public class GetPopularMovieList extends UseCase<List<Movie>, Void> {
+public class GetPopularMovieList extends UseCase<List<Movie>, GetPopularMovieList.Params> {
 
     private final MovieRepository movieRepository;
 
@@ -27,7 +29,21 @@ public class GetPopularMovieList extends UseCase<List<Movie>, Void> {
     }
 
     @Override
-    Observable<List<Movie>> buildUseCaseObservable(Void aVoid) {
-        return this.movieRepository.retrofitPopularMovies();
+    Observable<List<Movie>> buildUseCaseObservable(GetPopularMovieList.Params params) {
+        Preconditions.checkNotNull(params);
+        return this.movieRepository.retrofitPopularMovies(params.page);
+    }
+
+    public static final class Params {
+
+        private final int page;
+
+        public Params(int page) {
+            this.page = page;
+        }
+
+        public static Params forMovie(int page) {
+            return new Params(page);
+        }
     }
 }

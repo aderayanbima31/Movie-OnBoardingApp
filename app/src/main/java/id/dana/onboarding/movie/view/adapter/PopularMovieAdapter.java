@@ -37,6 +37,7 @@ public class PopularMovieAdapter extends RecyclerView.Adapter<PopularMovieAdapte
 
     private OnItemClickListener onItemClickListener;
 
+    private int count = 1;
 
     @Inject
     public PopularMovieAdapter(Context context){
@@ -91,8 +92,19 @@ public class PopularMovieAdapter extends RecyclerView.Adapter<PopularMovieAdapte
 
     public void setMoviesCollection(Collection<MovieModel> moviesCollection){
         this.validateMoviesCollection(moviesCollection);
-        this.moviesCollection = (List<MovieModel>) moviesCollection;
+
+        if (this.moviesCollection.isEmpty()) {
+            this.moviesCollection = (List<MovieModel>) moviesCollection;
+        }
+        else {
+            this.moviesCollection.addAll(moviesCollection);
+        }
         this.notifyDataSetChanged();
+        count++;
+    }
+
+    public void clearList() {
+        this.moviesCollection.clear();
     }
 
     public interface OnItemClickListener {
@@ -105,6 +117,9 @@ public class PopularMovieAdapter extends RecyclerView.Adapter<PopularMovieAdapte
         this.onItemClickListener = onItemClickListener;
     }
 
+    public int getPageCount() {
+        return count;
+    }
 
     static class PopularMovieViewHolder extends RecyclerView.ViewHolder {
 

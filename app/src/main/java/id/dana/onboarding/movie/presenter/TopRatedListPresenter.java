@@ -54,19 +54,19 @@ public class TopRatedListPresenter implements Presenter {
         movieListView = null;
     }
 
-    public void initialize() {
-        this.loadTopRatedMovieList();
+    public void initialize(int page) {
+        this.loadTopRatedMovieList(page);
     }
 
-    private void loadTopRatedMovieList() {
-        getTopRateMovieList();
+    private void loadTopRatedMovieList(int page) {
+        this.getTopRateMovieList(page);
     }
 
     private void showViewLoading() {
         movieListView.showLoading();
     }
 
-    private void getTopRateMovieList() {
+    private void getTopRateMovieList(int page) {
         showViewLoading();
         getTopRatedMovieListUseCase.execute(new DefaultObserver<List<Movie>>() {
             @Override
@@ -85,7 +85,7 @@ public class TopRatedListPresenter implements Presenter {
             public void onComplete() {
                 hideViewLoading();
             }
-        }, null);
+        }, GetTopRatedMovieList.Params.forMovie(page));
     }
 
     public void onMovieClicked(MovieModel movieModel) {

@@ -9,6 +9,7 @@ import java.util.List;
 import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface RestApi {
 
@@ -32,10 +33,10 @@ public interface RestApi {
      * Retrofit Service Call
      */
     @GET("movie/popular")
-    Observable<MovieResponse> getPopularMovieRetrofit();
+    Observable<MovieResponse> getPopularMovieRetrofit(@Query("page") int page);
 
     @GET("movie/top_rated")
-    Observable<MovieResponse> getTopRatedMovieRetrofit();
+    Observable<MovieResponse> getTopRatedMovieRetrofit(@Query("page") int page);
 
     @GET("movie/{movieId}")
     Observable<MovieEntity> getMovieDetailsRetrofit(@Path("movieId") int id);

@@ -15,9 +15,9 @@ public interface MovieEntityData {
     /**
      * Get an {@link Observable} which will emit a List of {@link MovieEntity}.
      */
-    Observable<List<MovieEntity>> popularMovieEntityList();
+    Observable<List<MovieEntity>> popularMovieEntityList(int page);
 
-    Observable<List<MovieEntity>> topRatedMovieEntityList();
+    Observable<List<MovieEntity>> topRatedMovieEntityList(int page);
 
     /**
      * Get an {@link Observable} which will emit a {@link MovieEntity} by its id.
@@ -26,9 +26,9 @@ public interface MovieEntityData {
      */
     Observable<MovieEntity> movieEntityDetails(final String movieId);
 
-    Observable<MovieResponse> getPopularMovieEntityList();
+    Observable<MovieResponse> getPopularMovieEntityList(int page);
 
-    Observable<MovieResponse> getTopRatedMovieEntityList();
+    Observable<MovieResponse> getTopRatedMovieEntityList(int page);
 
     Observable<MovieEntity> getDetailsMovie(String movieId);
 }

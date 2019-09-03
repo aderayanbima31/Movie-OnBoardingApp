@@ -22,29 +22,34 @@ public class NetworkMovieEntityData implements MovieEntityData {
         this.restApi = restApi;
     }
 
+//    @Override
+//    public Observable<List<MovieEntity>> popularMovieEntityList() {
+//        return null;
+//    }
+
     @Override
-    public Observable<List<MovieEntity>> popularMovieEntityList() {
+    public Observable<List<MovieEntity>> popularMovieEntityList(int page) {
         return null;
     }
 
     @Override
-    public Observable<List<MovieEntity>> topRatedMovieEntityList() {
+    public Observable<List<MovieEntity>> topRatedMovieEntityList(int page) {
         return null;
     }
-
+    
     @Override
     public Observable<MovieEntity> movieEntityDetails(String movieId) {
         return this.restApi.movieEntityById(movieId);
     }
 
     @Override
-    public Observable<MovieResponse> getPopularMovieEntityList() {
-        return this.restApi.getPopularMovieRetrofit();
+    public Observable<MovieResponse> getPopularMovieEntityList(int page) {
+        return this.restApi.getPopularMovieRetrofit(page);
     }
 
     @Override
-    public Observable<MovieResponse> getTopRatedMovieEntityList() {
-        return this.restApi.getTopRatedMovieRetrofit();
+    public Observable<MovieResponse> getTopRatedMovieEntityList(int page) {
+        return this.restApi.getTopRatedMovieRetrofit(page);
     }
 
     @Override

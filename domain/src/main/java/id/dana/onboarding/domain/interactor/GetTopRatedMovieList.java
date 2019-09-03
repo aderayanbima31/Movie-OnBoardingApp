@@ -11,7 +11,7 @@ import id.dana.onboarding.domain.executor.ThreadExecutor;
 import id.dana.onboarding.domain.repository.MovieRepository;
 import io.reactivex.Observable;
 
-public class GetTopRatedMovieList extends UseCase<List<Movie>, Void> {
+public class GetTopRatedMovieList extends UseCase<List<Movie>, GetTopRatedMovieList.Params> {
 
     private final MovieRepository movieRepository;
 
@@ -23,7 +23,20 @@ public class GetTopRatedMovieList extends UseCase<List<Movie>, Void> {
     }
 
     @Override
-    Observable<List<Movie>> buildUseCaseObservable(Void aVoid) {
-        return this.movieRepository.retrofitTopRateMovies();
+    Observable<List<Movie>> buildUseCaseObservable(GetTopRatedMovieList.Params params) {
+        return this.movieRepository.retrofitTopRateMovies(params.page);
+    }
+
+    public static final class Params {
+
+        private final int page;
+
+        public Params(int page) {
+            this.page = page;
+        }
+
+        public static Params forMovie(int page) {
+            return new Params(page);
+        }
     }
 }

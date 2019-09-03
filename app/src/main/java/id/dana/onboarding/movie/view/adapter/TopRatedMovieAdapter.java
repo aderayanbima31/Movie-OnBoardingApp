@@ -33,6 +33,8 @@ public class TopRatedMovieAdapter extends RecyclerView.Adapter<TopRatedMovieAdap
 
     private OnItemClickListener onItemClickListener;
 
+    private int count = 1;
+
     @Inject
     public TopRatedMovieAdapter(Context context) {
         this.layoutInflater = (LayoutInflater) context
@@ -77,8 +79,15 @@ public class TopRatedMovieAdapter extends RecyclerView.Adapter<TopRatedMovieAdap
 
     public void setMoviesCollection(Collection<MovieModel> moviesCollection) {
         validateMoviesCollection(moviesCollection);
-        this.moviesCollection = (List<MovieModel>) moviesCollection;
+
+        if (this.moviesCollection.isEmpty()) {
+            this.moviesCollection = (List<MovieModel>) moviesCollection;
+        }
+        else {
+            this.moviesCollection.addAll(moviesCollection);
+        }
         this.notifyDataSetChanged();
+        count++;
     }
 
     private void validateMoviesCollection(Collection<MovieModel> moviesCollection) {
@@ -94,6 +103,10 @@ public class TopRatedMovieAdapter extends RecyclerView.Adapter<TopRatedMovieAdap
     public interface OnItemClickListener {
 
         void onMovieItemClicked(MovieModel movieModel);
+    }
+
+    public int getPageCount() {
+        return count;
     }
 
     static class TopRatedViewHolder extends RecyclerView.ViewHolder {
