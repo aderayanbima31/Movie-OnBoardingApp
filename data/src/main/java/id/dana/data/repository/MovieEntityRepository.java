@@ -69,7 +69,7 @@ public class MovieEntityRepository implements MovieRepository {
     public Observable<List<Movie>> retrofitPopularMovies() {
         MovieEntityData movieEntityData = this.movieEntityDataFactory
             .createCloudDataStoreRetrofit();
-        return movieEntityData.retrofitPopularMovieEntityList()
+        return movieEntityData.getPopularMovieEntityList()
             .map(movieEntityDataMapper::transformMovieEntity);
     }
 
@@ -77,7 +77,7 @@ public class MovieEntityRepository implements MovieRepository {
     public Observable<List<Movie>> retrofitTopRateMovies() {
         MovieEntityData movieEntityData = this.movieEntityDataFactory
             .createCloudDataStoreRetrofit();
-        return movieEntityData.retrofitTopRatedMovieEntityList()
+        return movieEntityData.getTopRatedMovieEntityList()
             .map(movieEntityDataMapper::transformMovieEntity);
     }
 
@@ -85,7 +85,7 @@ public class MovieEntityRepository implements MovieRepository {
     public Observable<Movie> retrofitDetailMovie(String movieId) {
         MovieEntityData movieEntityData = this.movieEntityDataFactory
             .createCloudDataStoreRetrofit();
-        return movieEntityData.retrofitDetailsMovie(movieId)
+        return movieEntityData.getDetailsMovie(movieId)
             .map(movieEntityDataMapper::transform);
     }
 

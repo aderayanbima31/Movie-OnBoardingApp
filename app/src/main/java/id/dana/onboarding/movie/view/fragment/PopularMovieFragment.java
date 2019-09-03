@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import java.util.Collection;
 
@@ -24,10 +25,8 @@ import butterknife.Unbinder;
 import id.dana.onboarding.movie.R;
 import id.dana.onboarding.movie.internal.component.MovieComponent;
 import id.dana.onboarding.movie.model.MovieModel;
-import id.dana.onboarding.movie.presenter.FavoriteMovieListPresenter;
 import id.dana.onboarding.movie.presenter.PopularMovieListPresenter;
 import id.dana.onboarding.movie.view.MovieListView;
-import id.dana.onboarding.movie.view.adapter.FavoriteMovieAdapter;
 import id.dana.onboarding.movie.view.adapter.PopularMovieAdapter;
 import id.dana.onboarding.movie.view.decoration.GridSpacingItemDecoration;
 
@@ -50,6 +49,8 @@ public class PopularMovieFragment extends BaseFragment implements MovieListView 
     RecyclerView rvPopularMovie;
 
     private MovieListListener movieListListener;
+
+    private boolean itShouldLoadMore = true;
 
     private PopularMovieAdapter.OnItemClickListener onItemClickListener = movieModel -> {
         if (PopularMovieFragment.this.popularMovieListPresenter != null && movieModel != null) {
@@ -126,7 +127,6 @@ public class PopularMovieFragment extends BaseFragment implements MovieListView 
     @Override
     public void onDetach() {
         super.onDetach();
-        unbinder.unbind();
         this.movieListListener = null;
     }
 
@@ -140,6 +140,28 @@ public class PopularMovieFragment extends BaseFragment implements MovieListView 
         rvPopularMovie.addItemDecoration(new GridSpacingItemDecoration(2, convertDpToPx(), true));
         rvPopularMovie.setItemAnimator(new DefaultItemAnimator());
         rvPopularMovie.setAdapter(popularMovieAdapter);
+        rvPopularMovie.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                if (dy > 0){
+                    if (!rvPopularMovie.canScrollVertically(RecyclerView.FOCUS_DOWN)){
+                        if (itShouldLoadMore){
+                            loadMore();
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    private void loadMore() {
+        showToastMessage("Load More");
+        popularMovieListPresenter.initialize();
     }
 
     private int convertDpToPx() {

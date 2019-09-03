@@ -16,8 +16,6 @@ import id.dana.onboarding.movie.internal.module.ApplicationModule;
  */
 public class MainApp extends Application {
 
-    private static final int sleepLimit = 2500;
-
     ApplicationComponent applicationComponent;
 
     @Override
@@ -25,7 +23,6 @@ public class MainApp extends Application {
         super.onCreate();
         this.initializeInjector();
         this.initializeLeakDetection();
-        this.delaySplashActivity();
     }
 
     private void initializeInjector() {
@@ -38,10 +35,6 @@ public class MainApp extends Application {
         if (BuildConfig.DEBUG) {
             LeakCanary.install(this);
         }
-    }
-
-    private void delaySplashActivity() {
-        SystemClock.sleep(sleepLimit);
     }
 
     public ApplicationComponent getApplicationComponent() {

@@ -1,6 +1,5 @@
 package id.dana.data.entity;
 
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -8,19 +7,16 @@ import java.util.List;
 public class MovieResponse {
 
     @SerializedName("page")
-    @Expose
     private int page;
 
     @SerializedName("results")
-    @Expose
     private List<MovieEntity> results = null;
 
     @SerializedName("total_pages")
-    @Expose
     private int totalPages;
 
     @SerializedName("total_results")
-    @Expose
+
     private int totalResults;
 
     public int getPage() {

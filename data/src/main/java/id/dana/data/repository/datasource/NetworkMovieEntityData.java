@@ -38,17 +38,17 @@ public class NetworkMovieEntityData implements MovieEntityData {
     }
 
     @Override
-    public Observable<MovieResponse> retrofitPopularMovieEntityList() {
+    public Observable<MovieResponse> getPopularMovieEntityList() {
         return this.restApi.getPopularMovieRetrofit();
     }
 
     @Override
-    public Observable<MovieResponse> retrofitTopRatedMovieEntityList() {
+    public Observable<MovieResponse> getTopRatedMovieEntityList() {
         return this.restApi.getTopRatedMovieRetrofit();
     }
 
     @Override
-    public Observable<MovieEntity> retrofitDetailsMovie(String movieId) {
+    public Observable<MovieEntity> getDetailsMovie(String movieId) {
         return this.restApi.getMovieDetailsRetrofit(Integer.parseInt(movieId));
     }
 }

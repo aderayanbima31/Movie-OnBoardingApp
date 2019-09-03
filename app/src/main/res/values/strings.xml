@@ -17,4 +17,5 @@
     <string name="exception_message_movie_not_found">Cannot retrieve user data. Check your internet
         connection
     </string>
+    <string name="format_rate_value">%s/10</string>
 </resources>

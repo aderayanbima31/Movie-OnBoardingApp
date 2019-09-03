@@ -32,6 +32,8 @@ import io.reactivex.annotations.NonNull;
  */
 public class PopularMovieDetailsPresenter implements Presenter {
 
+    private static final String TAG = PopularMovieDetailsPresenter.class.getSimpleName();
+
     private RemoveMovieIsFavorite removeMovieIsFavoriteUseCase;
 
     private AddFavoriteMovie addFavoriteMovieUseCase;
@@ -44,19 +46,17 @@ public class PopularMovieDetailsPresenter implements Presenter {
 
     private MovieTrailerModelDataMapper movieTrailerModelDataMapper;
 
-    private static final String TAG = PopularMovieDetailsPresenter.class.getSimpleName();
-
     private GetMovieDetails getMovieDetailsUseCase;
 
     private CheckMovieIsFavorite checkMovieIsFavoriteUseCase;
-
 
     @Inject
     public PopularMovieDetailsPresenter(GetMovieDetails getMovieDetailsUseCase,
         AddFavoriteMovie addFavoriteMovie, CheckMovieIsFavorite checkMovieIsFavoriteUseCase,
         RemoveMovieIsFavorite removeMovieIsFavoriteUseCase,
         MovieModelDataMapper movieModelDataMapper,
-        MovieTrailerModelDataMapper movieTrailerModelDataMapper, GetVideoTrailerById getVideoTrailerByIdUseCase) {
+        MovieTrailerModelDataMapper movieTrailerModelDataMapper,
+        GetVideoTrailerById getVideoTrailerByIdUseCase) {
         this.getMovieDetailsUseCase = getMovieDetailsUseCase;
         this.addFavoriteMovieUseCase = addFavoriteMovie;
         this.movieModelDataMapper = movieModelDataMapper;
@@ -66,7 +66,7 @@ public class PopularMovieDetailsPresenter implements Presenter {
         this.getVideoTrailerByIdUseCase = getVideoTrailerByIdUseCase;
     }
 
-    public void setView(@NonNull MovieDetailsView view){
+    public void setView(@NonNull MovieDetailsView view) {
         this.movieDetailsView = view;
     }
 
@@ -89,11 +89,10 @@ public class PopularMovieDetailsPresenter implements Presenter {
         this.movieDetailsView = null;
     }
 
-
     /**
      * Initializes the presenter by showing/hiding proper views and retrieving movie details.
      */
-    public void initialize(String movieId){
+    public void initialize(String movieId) {
         this.hideViewRetry();
         this.showViewLoading();
         if (movieId != null) {
@@ -105,10 +104,10 @@ public class PopularMovieDetailsPresenter implements Presenter {
 
     private void getMovieDetails(String movieId) {
         this.getMovieDetailsUseCase
-            .execute(new DefaultObserver<Movie>(){
+            .execute(new DefaultObserver<Movie>() {
 
                 @Override
-                public void onNext(Movie movie){
+                public void onNext(Movie movie) {
                     MovieModel movieModel = movieModelDataMapper.transform(movie);
                     movieDetailsView.renderMovie(movieModel);
                     hideViewLoading();
@@ -116,23 +115,23 @@ public class PopularMovieDetailsPresenter implements Presenter {
                 }
 
                 @Override
-                public void onError(Throwable throwable){
+                public void onError(Throwable throwable) {
                     hideViewLoading();
                     showErrorMessage(new DefaulErrorBundle((Exception) throwable));
                 }
             }, GetMovieDetails.Params.forMovie(movieId));
     }
 
-    public void  addMovieFavorite(FavoriteMovieModel favoriteMovieModel){
-        addFavoriteMovieUseCase.execute(new DefaultObserver<Boolean>(){
+    public void addMovieFavorite(FavoriteMovieModel favoriteMovieModel) {
+        addFavoriteMovieUseCase.execute(new DefaultObserver<Boolean>() {
 
             @Override
-            public void onNext(Boolean success){
+            public void onNext(Boolean success) {
                 movieDetailsView.onLikedMovie(success);
             }
 
             @Override
-            public void onError(Throwable throwable){
+            public void onError(Throwable throwable) {
                 showErrorMessage(new DefaulErrorBundle((Exception) throwable));
             }
 
@@ -165,10 +164,10 @@ public class PopularMovieDetailsPresenter implements Presenter {
         }, CheckMovieIsFavorite.Params.forCheckMovieIsFavorite(movieId));
     }
 
-    private void getVideoTrailer(String movieId){
-        getVideoTrailerByIdUseCase.execute(new DefaultObserver<List<Video>>(){
+    private void getVideoTrailer(String movieId) {
+        getVideoTrailerByIdUseCase.execute(new DefaultObserver<List<Video>>() {
             @Override
-            public void onNext(List<Video> videoList){
+            public void onNext(List<Video> videoList) {
                 Log.e(TAG, "onNext" + videoList.size());
                 List<MovieTrailerModel> movieModels = movieTrailerModelDataMapper.mapper(videoList);
                 Log.e(TAG, "onNext :" + movieModels.size());
@@ -176,7 +175,7 @@ public class PopularMovieDetailsPresenter implements Presenter {
             }
 
             @Override
-            public void onError(Throwable throwable){
+            public void onError(Throwable throwable) {
 
                 Log.e(TAG, "onError: " + throwable.getMessage());
                 showErrorMessage(new DefaulErrorBundle((Exception) throwable));

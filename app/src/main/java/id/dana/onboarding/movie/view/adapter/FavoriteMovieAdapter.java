@@ -63,7 +63,7 @@ public class FavoriteMovieAdapter extends RecyclerView.Adapter<FavoriteMovieAdap
             .into(holder.thumbnailPopularMovie);
         holder.textMovieTitle.setText(favoriteMovieModel.getOriginalTitle());
         holder.textMovieRate
-            .setText(String.format("%s/10", String.valueOf(favoriteMovieModel.getVoteAverage())));
+            .setText(String.format(context.getString(R.string.format_rate_value), String.valueOf(favoriteMovieModel.getVoteAverage())));
         holder.thumbnailPopularMovie.setOnClickListener(v -> {
             if (FavoriteMovieAdapter.this.onItemClickListener != null) {
                 FavoriteMovieAdapter.this.onItemClickListener

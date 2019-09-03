@@ -26,9 +26,9 @@ public interface MovieEntityData {
      */
     Observable<MovieEntity> movieEntityDetails(final String movieId);
 
-    Observable<MovieResponse> retrofitPopularMovieEntityList();
+    Observable<MovieResponse> getPopularMovieEntityList();
 
-    Observable<MovieResponse> retrofitTopRatedMovieEntityList();
+    Observable<MovieResponse> getTopRatedMovieEntityList();
 
-    Observable<MovieEntity> retrofitDetailsMovie(String movieId);
+    Observable<MovieEntity> getDetailsMovie(String movieId);
 }

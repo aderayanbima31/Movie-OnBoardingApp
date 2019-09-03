@@ -1,18 +1,13 @@
 package id.dana.onboarding.movie.presenter;
 
-import android.widget.Toast;
-
 import java.util.Collection;
 import java.util.List;
 
 import javax.inject.Inject;
 
 import id.dana.onboarding.domain.FavoriteMovie;
-import id.dana.onboarding.domain.exception.DefaulErrorBundle;
-import id.dana.onboarding.domain.exception.ErrorBundle;
 import id.dana.onboarding.domain.interactor.DefaultObserver;
 import id.dana.onboarding.domain.interactor.GetFavoriteMovieList;
-import id.dana.onboarding.movie.exception.ErrorMessageFactory;
 import id.dana.onboarding.movie.mapper.FavoriteMovieModelDataMapper;
 import id.dana.onboarding.movie.model.FavoriteMovieModel;
 import id.dana.onboarding.movie.view.FavoriteMovieListView;
@@ -24,34 +19,34 @@ import io.reactivex.annotations.NonNull;
  */
 public class FavoriteMovieListPresenter implements Presenter {
 
+    private static final String TAG = PopularMovieListPresenter.class.getName();
+
     private FavoriteMovieListView favoriteMovieListView;
 
     private FavoriteMovieModelDataMapper favoriteMovieModelDataMapper;
 
     private GetFavoriteMovieList getFavoriteMovieListUseCase;
 
-    private static final String TAG = PopularMovieListPresenter.class.getName();
-
     @Inject
     public FavoriteMovieListPresenter(FavoriteMovieModelDataMapper favoriteMovieModelDataMapper,
-        GetFavoriteMovieList getFavoriteMovieList){
+        GetFavoriteMovieList getFavoriteMovieList) {
 
         this.favoriteMovieModelDataMapper = favoriteMovieModelDataMapper;
         this.getFavoriteMovieListUseCase = getFavoriteMovieList;
     }
 
-    public void setView(@NonNull FavoriteMovieListView view){
+    public void setView(@NonNull FavoriteMovieListView view) {
         this.favoriteMovieListView = view;
     }
 
     @Override
     public void resume() {
-
+        //No Implementation
     }
 
     @Override
     public void pause() {
-
+        //No Implementation
     }
 
     @Override
@@ -60,7 +55,7 @@ public class FavoriteMovieListPresenter implements Presenter {
         this.favoriteMovieListView = null;
     }
 
-    public void initialize(){
+    public void initialize() {
         loadMovieList();
     }
 
@@ -74,16 +69,16 @@ public class FavoriteMovieListPresenter implements Presenter {
             @Override
             public void onNext(List<FavoriteMovie> favoriteMovies) {
 
-                    Collection<FavoriteMovieModel> favoriteMovieModels = favoriteMovieModelDataMapper
-                        .transform(favoriteMovies);
-                    favoriteMovieListView.renderFavoriteMovieList(favoriteMovieModels);
-                    hideViewLoading();
+                Collection<FavoriteMovieModel> favoriteMovieModels = favoriteMovieModelDataMapper
+                    .transform(favoriteMovies);
+                favoriteMovieListView.renderFavoriteMovieList(favoriteMovieModels);
+                hideViewLoading();
             }
 
             @Override
             public void onError(Throwable e) {
                 hideViewLoading();
-                showErrorMessage(new DefaulErrorBundle((Exception) e));
+                favoriteMovieListView.showError("Belum Ada Film Favorite");
             }
         }, null);
     }
@@ -94,12 +89,6 @@ public class FavoriteMovieListPresenter implements Presenter {
 
     private void hideViewLoading() {
         this.favoriteMovieListView.hideLoading();
-    }
-
-    private void showErrorMessage(ErrorBundle errorBundle) {
-        String errorMessage = ErrorMessageFactory
-            .createErrorMessage(this.favoriteMovieListView.context(), errorBundle.getException());
-        this.favoriteMovieListView.showError(errorMessage);
     }
 
     public void onMovieClicked(FavoriteMovieModel favoriteMovieModel) {
